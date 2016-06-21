@@ -1,11 +1,14 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as photoFeedActions from '../actions/photoFeed';
-import Header from '../components/Header';
-import TabsContainer from './TabsContainer';
-import FeedContainer from './FeedContainer';
+import {
+  StyleSheet,
+  Text,
+  View }                       from 'react-native';
+import React                   from 'react';
+import { bindActionCreators }  from 'redux';
+import { connect }             from 'react-redux';
+import * as photoFeedActions   from '../actions/photoFeed';
+import Header                  from '../components/Header';
+import TabsContainer           from './TabsContainer';
+import FeedContainer           from './FeedContainer';
 
 const mapStateToProps = (state) => ({
   photoFeed: state.photoFeed

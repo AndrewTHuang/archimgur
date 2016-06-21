@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import photoFeed from './photoFeed';
+import photoFeed           from './photoFeed';
 
 const rootReducer = combineReducers({
   photoFeed

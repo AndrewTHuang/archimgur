@@ -1,5 +1,8 @@
-import React from 'react';
-import { StyleSheet, Text, TouchableHighlight } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TouchableHighlight } from 'react-native';
+import React           from 'react';
 
 export default class Tab extends React.Component {
   constructor(props) {

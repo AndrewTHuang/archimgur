@@ -1,5 +1,11 @@
-import React from 'react';
-import { ActivityIndicatorIOS, Image, ListView, StyleSheet, Text, View } from 'react-native';
+import {
+  ActivityIndicatorIOS,
+  Image,
+  ListView,
+  StyleSheet,
+  Text,
+  View }      from 'react-native';
+import React  from 'react';
 import moment from 'moment';
 
 export default class FeedCard extends React.Component {
@@ -40,6 +46,11 @@ export default class FeedCard extends React.Component {
   }
 
   onEndReached(feed, timesFetched) {
+    /*
+      Bug: onEndReached is fired on initial render, causing a double fetch on load
+      Potential solutions:
+        1. Utilize lifecycle methods to
+    */
     this.props.fetchPhotosOnEndReached(feed, timesFetched);
   }
 
@@ -51,8 +62,7 @@ export default class FeedCard extends React.Component {
         dataSource={dataSource}
         renderRow={(cardData) => this.renderCard(cardData)}
         renderFooter={this.renderFooter}
-        scrollsToTop={false}
-        onEndReachedThreshold={300}
+        onEndReachedThreshold={100}
         onEndReached={() => this.onEndReached(selectedFeed, timesFetched)}
       />
     )

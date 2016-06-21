@@ -1,5 +1,9 @@
-import { CHANGE_FEED, REQUEST_PHOTOS, RECEIVE_PHOTOS, UPDATE_DATA_SOURCE } from '../actions/photoFeed';
-import { ListView } from 'react-native';
+import {
+  CHANGE_FEED,
+  REQUEST_PHOTOS,
+  RECEIVE_PHOTOS,
+  UPDATE_DATA_SOURCE } from '../actions/photoFeed';
+import { ListView }    from 'react-native';
 
 let dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
 

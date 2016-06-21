@@ -1,6 +1,10 @@
-import React from 'react';
-import { ActivityIndicatorIOS, StyleSheet, Text, View } from 'react-native';
-import FeedCard from '../components/FeedCard';
+import {
+  ActivityIndicatorIOS,
+  StyleSheet,
+  Text,
+  View }                from 'react-native';
+import React            from 'react';
+import FeedCard         from '../components/FeedCard';
 
 export default class FeedContainer extends React.Component {
   render() {
