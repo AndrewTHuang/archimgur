@@ -8,19 +8,17 @@ export default class Tab extends React.Component {
   }
 
   onPress(newFeed) {
-    // On Tab press, toggle this.state.selectedFeed, which will:
     if (this.props.selectedFeed != newFeed) {
       this.props.fetchPhotosOnFeedChange(newFeed);
     }
-      // conditionally apply className to Tab to indicate which one is selected via styling
-      // render the appropriate feed of photos
   }
 
   render() {
     return (
       <TouchableHighlight
-        style={styles.tab}
+        style={[styles.tab, (this.props.selectedFeed === this.props.feedName) && styles.selectedFeed]}
         onPress={() => this.onPress(this.props.feedName)}
+        underlayColor={'lightgrey'}
       >
         <Text style={styles.tabText}>
           {this.props.title}
@@ -35,9 +33,15 @@ const styles = StyleSheet.create({
     flex: 1,
     borderTopWidth: 0.5,
     borderBottomWidth: 0.5,
-    borderColor: 'black',
+    borderColor: 'grey',
     alignSelf: 'stretch',
     justifyContent: 'center',
+  },
+  selectedFeed: {
+    backgroundColor: '#eee',
+    borderBottomColor: 'black',
+    borderBottomWidth: 3,
+    paddingTop: 3,
   },
   tabText: {
     textAlign: 'center',
