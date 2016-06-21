@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 64, // combined height of status bar + header
     alignSelf: 'stretch',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    marginBottom: 20,
   },
 });
