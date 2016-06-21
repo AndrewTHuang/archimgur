@@ -10,6 +10,13 @@ export const changeFeed = (newFeed) => {
   }
 }
 
+export const fetchPhotosOnFeedChange = (feed) => {
+  return dispatch => {
+    dispatch(changeFeed(feed));
+    dispatch(fetchPhotos(feed));
+  }
+}
+
 export const updateDataSource = (feed, photos) => {
   return {
     type: UPDATE_DATA_SOURCE,
@@ -55,7 +62,10 @@ export const fetchPhotos = (feed) => {
         let feedCards = [];
 
         for (var i = 0; i < 10; i++) {
-          let photo = photos.data[i];
+          let photo = (feed === 'cabin')
+            ? photos.data[i]
+            : photos.data.items[i]
+
           let cardData = {
             uri: photo.link,
             description: photo.description,
