@@ -1,12 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Header from '../components/Header';
+import TabsContainer from './TabsContainer';
 
 export default class Archimgur extends React.Component {
   render() {
     return (
       <View style={styles.appContainer}>
         <Header />
+        <TabsContainer />
         <View style={styles.feedContainer}>
           <Text style={styles.welcome}>
             Welcome to React Native!
@@ -29,7 +31,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     marginTop: 20,
-    backgroundColor: '#F5FCFF',
   },
   welcome: {
     fontSize: 20,
