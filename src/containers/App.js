@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Header from '../components/Header';
 import TabsContainer from './TabsContainer';
+import FeedContainer from './FeedContainer';
 
 export default class Archimgur extends React.Component {
   render() {
@@ -9,18 +10,7 @@ export default class Archimgur extends React.Component {
       <View style={styles.appContainer}>
         <Header />
         <TabsContainer />
-        <View style={styles.feedContainer}>
-          <Text style={styles.welcome}>
-            Welcome to React Native!
-          </Text>
-          <Text style={styles.instructions}>
-            To get started, edit index.ios.js
-          </Text>
-          <Text style={styles.instructions}>
-            Press Cmd+R to reload,{'\n'}
-            Cmd+D or shake for dev menu
-          </Text>
-        </View>
+        <FeedContainer/>
       </View>
     );
   }
