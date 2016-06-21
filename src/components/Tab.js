@@ -10,7 +10,7 @@ export default class Tab extends React.Component {
   onPress(newFeed) {
     // On Tab press, toggle this.state.selectedFeed, which will:
     if (this.props.selectedFeed != newFeed) {
-      this.props.changeFeed(newFeed);
+      this.props.fetchPhotosOnFeedChange(newFeed);
     }
       // conditionally apply className to Tab to indicate which one is selected via styling
       // render the appropriate feed of photos
