@@ -9,13 +9,9 @@ import React  from 'react';
 import moment from 'moment';
 
 export default class FeedCard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   convertDateTime(datetime) {
-    let timeStamp = new moment.unix(datetime).fromNow();
-    return timeStamp;
+    // Use the `moment` library to calculate relevant time (e.g. '6 hours ago')
+    return new moment.unix(datetime).fromNow();
   }
 
   renderCard(cardData) {
@@ -46,16 +42,11 @@ export default class FeedCard extends React.Component {
   }
 
   onEndReached(feed, timesFetched) {
-    /*
-      Bug: onEndReached is fired on initial render, causing a double fetch on load
-      Potential solutions:
-        1. Utilize lifecycle methods to
-    */
     this.props.fetchPhotosOnEndReached(feed, timesFetched);
   }
 
   render() {
-    const { selectedFeed, timesFetched, dataSource, cabinCards, architectureCards } = this.props;
+    const { selectedFeed, timesFetched, dataSource } = this.props;
 
     return (
       <ListView
@@ -81,7 +72,6 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     marginHorizontal: 50,
   },
-  photoContainer: {},
   photo: {
     height: 250,
   },
@@ -92,7 +82,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
   },
   descriptionContainer: {
-    marginHorizontal: 50
+    marginHorizontal: 50,
   },
   description: {
     textAlign: 'center',
