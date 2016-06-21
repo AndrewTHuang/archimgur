@@ -31,12 +31,24 @@ export const fetchPhotos = (feed) => {
       }
     })
     .then(res => {
-      if (res.ok) {
-        // Create storage array
-        // Parse relevant data from res photo object
-          // url, description, datetime, viewcount
-        // Push data to array
-        // dispatch(receivePhotos(feed, array))
+      return res.json()
+    })
+    .then(photos => {
+      if (photos.success) {
+        let feedCards = [];
+
+        for (var i = 0; i < 10; i++) {
+          let photo = photos.data[i];
+          let cardData = {
+            url: photo.link,
+            description: photo.description,
+            datetime: photo.datetime,
+            views: photo.views
+          }
+          feedCards.push(cardData);
+        }
+
+        dispatch(receivePhotos(feed, feedCards));
       } else {
         console.log('Uh oh, something went wrong! Got status code ' + res.status);
       }
