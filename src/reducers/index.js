@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import imageFeed from './imageFeed';
+import photoFeed from './photoFeed';
 
 const rootReducer = combineReducers({
-  imageFeed
+  photoFeed
 });
 
 export default rootReducer;
