@@ -9,16 +9,16 @@ export default class TabsContainer extends React.Component {
     return (
       <View style={styles.tabsContainer}>
         <Tab
-          title={'Cabin Porn'}
           feedName={'cabin'}
           fetchPhotosOnFeedChange={this.props.fetchPhotosOnFeedChange}
           selectedFeed={this.props.selectedFeed}
+          title={'Cabin Porn'}
         />
         <Tab
-          title={'#architecture'}
           feedName={'architecture'}
           fetchPhotosOnFeedChange={this.props.fetchPhotosOnFeedChange}
           selectedFeed={this.props.selectedFeed}
+          title={'#architecture'}
         />
       </View>
     );
