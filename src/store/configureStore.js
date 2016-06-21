@@ -1,7 +1,7 @@
 import {
   applyMiddleware,
   createStore,
-  ompose }         from 'redux';
+  compose }        from 'redux';
 import thunk       from 'redux-thunk';
 import devTools    from 'remote-redux-devtools';
 import rootReducer from '../reducers';
