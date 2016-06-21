@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicatorIOS, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicatorIOS, StyleSheet, Text, View } from 'react-native';
 import FeedCard from '../components/FeedCard';
 
 export default class FeedContainer extends React.Component {
@@ -12,7 +12,7 @@ export default class FeedContainer extends React.Component {
           ? <ActivityIndicatorIOS
               size={'large'}
             />
-          : <ScrollView>
+          : <View style={styles.feedContainer}>
               <FeedCard
                 selectedFeed={this.props.selectedFeed}
                 dataSource={this.props.dataSource}
@@ -20,7 +20,7 @@ export default class FeedContainer extends React.Component {
                 architectureCards={this.props.architectureCards}
                 updateDataSource={this.props.updateDataSource}
               />
-            </ScrollView>
+            </View>
         }
       </View>
     );
