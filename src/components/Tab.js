@@ -2,8 +2,16 @@ import React from 'react';
 import { StyleSheet, Text, TouchableHighlight } from 'react-native';
 
 export default class Tab extends React.Component {
-  onPress() {
+  constructor(props) {
+    super(props);
+    this.onPress = this.onPress.bind(this);
+  }
+
+  onPress(newFeed) {
     // On Tab press, toggle this.state.selectedFeed, which will:
+    if (this.props.selectedFeed != newFeed) {
+      this.props.changeFeed(newFeed);
+    }
       // conditionally apply className to Tab to indicate which one is selected via styling
       // render the appropriate feed of photos
   }
@@ -12,10 +20,10 @@ export default class Tab extends React.Component {
     return (
       <TouchableHighlight
         style={styles.tab}
-        onPress={this.onPress}
+        onPress={() => this.onPress(this.props.feedName)}
       >
         <Text style={styles.tabText}>
-          {this.props.name}
+          {this.props.title}
         </Text>
       </TouchableHighlight>
     );
