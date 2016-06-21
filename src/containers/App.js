@@ -22,10 +22,15 @@ export class Archimgur extends React.Component {
     // On load, fetch photos from the currently selected feed
     this.props.fetchPhotos(this.props.photoFeed.selectedFeed);
     this.updateDataSource = this.updateDataSource.bind(this);
+    this.changeFeed = this.changeFeed.bind(this)
   }
 
   updateDataSource() {
     this.props.updateDataSource();
+  }
+
+  changeFeed(newFeed) {
+    this.props.changeFeed(newFeed);
   }
 
   render() {
@@ -33,7 +38,10 @@ export class Archimgur extends React.Component {
     return (
       <View style={styles.appContainer}>
         <Header />
-        <TabsContainer />
+        <TabsContainer
+          changeFeed={this.changeFeed}
+          selectedFeed={selectedFeed}
+        />
         <FeedContainer
           selectedFeed={selectedFeed}
           dataSource={dataSource}
