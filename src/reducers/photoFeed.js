@@ -8,7 +8,7 @@ import { ListView }    from 'react-native';
 let dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
 
 const initialState = {
-  architectureCards: []
+  architectureCards: [],
   cabinCards: [],
   dataSource: dataSource,
   isFetchingOnEndReached: false,
@@ -27,6 +27,7 @@ export default photoFeed = (state = initialState, action) => {
       }
 
     case REQUEST_PHOTOS:
+      // Differentiate between feed change and end reached refreshes
       let isFetching = `isFetchingOn${action.feedOrEnd}`;
       return {
         ...state,
@@ -34,6 +35,7 @@ export default photoFeed = (state = initialState, action) => {
       };
 
     case RECEIVE_PHOTOS:
+      // Update either cabin or architecture feed
       let cardsArray = `${action.feed}Cards`;
       return {
         ...state,
