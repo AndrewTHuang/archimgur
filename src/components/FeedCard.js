@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, ListView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicatorIOS, Image, ListView, StyleSheet, Text, View } from 'react-native';
 import moment from 'moment';
 
 export default class FeedCard extends React.Component {
@@ -35,14 +35,25 @@ export default class FeedCard extends React.Component {
     );
   }
 
+  renderFooter() {
+    return <ActivityIndicatorIOS size={'small'} />
+  }
+
+  onEndReached(feed, timesFetched) {
+    this.props.fetchPhotosOnEndReached(feed, timesFetched);
+  }
+
   render() {
-    const { selectedFeed, dataSource, cabinCards, architectureCards } = this.props;
+    const { selectedFeed, timesFetched, dataSource, cabinCards, architectureCards } = this.props;
 
     return (
       <ListView
         dataSource={dataSource}
         renderRow={(cardData) => this.renderCard(cardData)}
+        renderFooter={this.renderFooter}
         scrollsToTop={false}
+        onEndReachedThreshold={300}
+        onEndReached={() => this.onEndReached(selectedFeed, timesFetched)}
       />
     )
   }
