@@ -21,14 +21,26 @@ export class Archimgur extends React.Component {
 
     // On load, fetch photos from the currently selected feed
     this.props.fetchPhotos(this.props.photoFeed.selectedFeed);
+    this.updateDataSource = this.updateDataSource.bind(this);
+  }
+
+  updateDataSource() {
+    this.props.updateDataSource();
   }
 
   render() {
+    let { selectedFeed, dataSource, cabinCards, architectureCards } = this.props.photoFeed;
     return (
       <View style={styles.appContainer}>
         <Header />
         <TabsContainer />
-        <FeedContainer/>
+        <FeedContainer
+          selectedFeed={selectedFeed}
+          dataSource={dataSource}
+          cabinCards={cabinCards}
+          architectureCards={architectureCards}
+          updateDataSource={this.updateDataSource}
+        />
       </View>
     );
   }

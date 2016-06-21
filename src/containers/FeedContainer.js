@@ -1,13 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text } from 'react-native';
 import FeedCard from '../components/FeedCard';
 
 export default class FeedContainer extends React.Component {
   render() {
     return (
-      <View style={styles.feedContainer}>
-        <FeedCard />
-      </View>
+      <ScrollView contentContainerStyle={styles.feedContainer}>
+        <FeedCard
+          selectedFeed={this.props.selectedFeed}
+          dataSource={this.props.dataSource}
+          cabinCards={this.props.cabinCards}
+          architectureCards={this.props.architectureCards}
+          updateDataSource={this.props.updateDataSource}
+        />
+      </ScrollView>
     );
   }
 }

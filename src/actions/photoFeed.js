@@ -1,7 +1,16 @@
+export const UPDATE_DATA_SOURCE = 'UPDATE_DATA_SOURCE';
 export const REQUEST_PHOTOS = 'REQUEST_PHOTOS';
 export const RECEIVE_PHOTOS = 'RECEIVE_PHOTOS';
 
-export const requestPhotos = (feed) => {
+export const updateDataSource = (feed, photos) => {
+  return {
+    type: UPDATE_DATA_SOURCE,
+    feed,
+    photos
+  }
+}
+
+export const requestPhotos = () => {
   return {
     type: REQUEST_PHOTOS
   }
@@ -40,7 +49,7 @@ export const fetchPhotos = (feed) => {
         for (var i = 0; i < 10; i++) {
           let photo = photos.data[i];
           let cardData = {
-            url: photo.link,
+            uri: photo.link,
             description: photo.description,
             datetime: photo.datetime,
             views: photo.views
@@ -49,6 +58,7 @@ export const fetchPhotos = (feed) => {
         }
 
         dispatch(receivePhotos(feed, feedCards));
+        dispatch(updateDataSource(feed, feedCards));
       } else {
         console.log('Uh oh, something went wrong! Got status code ' + res.status);
       }
