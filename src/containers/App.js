@@ -1,10 +1,28 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as photoFeedActions from '../actions/photoFeed';
 import Header from '../components/Header';
 import TabsContainer from './TabsContainer';
 import FeedContainer from './FeedContainer';
 
-export default class Archimgur extends React.Component {
+const mapStateToProps = (state) => ({
+  photoFeed: state.photoFeed
+})
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(photoFeedActions, dispatch);
+}
+
+export class Archimgur extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // On load, fetch photos from the currently selected feed
+    this.props.fetchPhotos(this.props.photoFeed.selectedFeed);
+  }
+
   render() {
     return (
       <View style={styles.appContainer}>
@@ -33,3 +51,5 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+
+export default connect(mapStateToProps, mapDispatchToProps)(Archimgur);
