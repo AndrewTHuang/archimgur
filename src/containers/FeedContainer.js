@@ -19,8 +19,5 @@ export default class FeedContainer extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  feedContainer: {
-    alignSelf: 'stretch',
-    justifyContent: 'space-between',
-  },
+  feedContainer: {}
 });

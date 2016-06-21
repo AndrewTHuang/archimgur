@@ -52,7 +52,8 @@ export const fetchPhotos = (feed) => {
             uri: photo.link,
             description: photo.description,
             datetime: photo.datetime,
-            views: photo.views
+            views: photo.views,
+            title: photo.title
           }
           feedCards.push(cardData);
         }

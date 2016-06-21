@@ -26,17 +26,20 @@ export default class FeedCard extends React.Component {
 
     return (
       <View style={styles.feedCard}>
+        <View style={styles.photoContainer}>
+          <Image
+            resizeMode='contain'
+            style={styles.photo}
+            source={{uri: cardData.uri}}
+          />
+        </View>
         <View style={styles.statsContainer}>
           <Text style={styles.timeStamp}>{cardData.datetime}</Text>
-          <Text style={styles.viewCount}>{cardData.views}</Text>
+          <Text style={styles.viewCount}>{cardData.views} views</Text>
         </View>
-        <Image
-          resizeMode='contain'
-          style={styles.photo}
-          source={{uri: cardData.uri}}
-        >
-        </Image>
-        <Text style={styles.description}>{cardData.description}</Text>
+        <Text style={styles.description}>
+          {cardData.description || cardData.title}
+        </Text>
       </View>
     );
   }
@@ -56,18 +59,32 @@ export default class FeedCard extends React.Component {
 const styles = StyleSheet.create({
   feedCard: {
     justifyContent: 'center',
+    margin: 10,
+    marginBottom: 100,
     borderWidth: 1,
-    borderColor: 'blue',
+    borderColor: 'black',
   },
   statsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingBottom: 20,
+    marginHorizontal: 20,
+  },
+  photoContainer: {
+    paddingBottom: 10,
   },
   photo: {
-    flex: 1,
-    height: 200,
+    height: 300,
   },
-  timeStamp: {},
-  viewCount: {},
-  description: {},
+  timeStamp: {
+    fontSize: 12,
+    color: 'grey',
+  },
+  viewCount: {
+    fontSize: 12,
+    color: 'grey',
+  },
+  description: {
+    textAlign: 'center',
+  },
 });

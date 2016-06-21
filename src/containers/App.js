@@ -49,18 +49,7 @@ export class Archimgur extends React.Component {
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
-    alignItems: 'center',
     marginTop: 20,
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 });
 
