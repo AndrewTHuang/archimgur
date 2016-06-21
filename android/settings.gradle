@@ -1,0 +1,3 @@
+rootProject.name = 'Archimgur'
+
+include ':app'
