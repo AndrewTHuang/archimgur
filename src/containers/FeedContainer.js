@@ -15,11 +15,11 @@ export default class FeedContainer extends React.Component {
         { isFetchingOnFeedChange
           ? <ActivityIndicatorIOS size={'large'} />
           : <FeedCard
-              selectedFeed={this.props.selectedFeed}
-              fetchPhotosOnEndReached={this.props.fetchPhotosOnEndReached}
-              dataSource={this.props.dataSource}
-              cabinCards={this.props.cabinCards}
               architectureCards={this.props.architectureCards}
+              cabinCards={this.props.cabinCards}
+              dataSource={this.props.dataSource}
+              fetchPhotosOnEndReached={this.props.fetchPhotosOnEndReached}
+              selectedFeed={this.props.selectedFeed}
               updateDataSource={this.props.updateDataSource}
             />
         }
