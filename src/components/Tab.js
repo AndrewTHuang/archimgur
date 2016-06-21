@@ -32,8 +32,6 @@ export default class Tab extends React.Component {
 
 const styles = StyleSheet.create({
   tab: {
-    flex: 1,
-    alignSelf: 'stretch',
     justifyContent: 'center',
   },
   selectedTab: {
@@ -45,6 +43,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Helvetica',
     textAlign: 'center',
     fontSize: 14,
+    letterSpacing: 1,
   },
   selectedText: {
     fontWeight: '500',
