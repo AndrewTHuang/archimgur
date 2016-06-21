@@ -34,7 +34,8 @@ export class Archimgur extends React.Component {
   }
 
   render() {
-    let { selectedFeed, dataSource, cabinCards, architectureCards } = this.props.photoFeed;
+    let { selectedFeed, isFetching, dataSource, cabinCards, architectureCards } = this.props.photoFeed;
+
     return (
       <View style={styles.appContainer}>
         <Header />
@@ -44,6 +45,7 @@ export class Archimgur extends React.Component {
         />
         <FeedContainer
           selectedFeed={selectedFeed}
+          isFetching={isFetching}
           dataSource={dataSource}
           cabinCards={cabinCards}
           architectureCards={architectureCards}
