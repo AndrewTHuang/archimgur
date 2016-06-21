@@ -40,6 +40,7 @@ export default class FeedCard extends React.Component {
       <ListView
         dataSource={dataSource}
         renderRow={(cardData) => this.renderCard(cardData)}
+        scrollsToTop={false}
       />
     )
   }

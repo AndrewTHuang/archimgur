@@ -5,6 +5,7 @@ let dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
 
 const initialState = {
   selectedFeed: 'cabin',
+  isFetching: true,
   dataSource: dataSource,
   cabinCards: [],
   architectureCards: []
@@ -18,7 +19,10 @@ export default photoFeed = (state = initialState, action) => {
         selectedFeed: action.newFeed
       }
     case REQUEST_PHOTOS:
-      return state;
+      return {
+        ...state,
+        isFetching: true
+      };
     case RECEIVE_PHOTOS:
       let cardsArray = `${action.feed}Cards`;
       return {
@@ -32,7 +36,8 @@ export default photoFeed = (state = initialState, action) => {
 
       return {
         ...state,
-        dataSource: newDataSource
+        dataSource: newDataSource,
+        isFetching: false
       }
     default:
       return state;
