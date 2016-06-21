@@ -18,6 +18,7 @@ export default class Tab extends React.Component {
       <TouchableHighlight
         style={[styles.tab, (this.props.selectedFeed === this.props.feedName) && styles.selectedFeed]}
         onPress={() => this.onPress(this.props.feedName)}
+        underlayColor={'lightgrey'}
       >
         <Text style={styles.tabText}>
           {this.props.title}
@@ -32,12 +33,13 @@ const styles = StyleSheet.create({
     flex: 1,
     borderTopWidth: 0.5,
     borderBottomWidth: 0.5,
-    borderColor: 'black',
+    borderColor: 'grey',
     alignSelf: 'stretch',
     justifyContent: 'center',
   },
   selectedFeed: {
     backgroundColor: '#eee',
+    borderBottomColor: 'black',
     borderBottomWidth: 3,
     paddingTop: 3,
   },
