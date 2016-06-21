@@ -1,29 +1,18 @@
 import React from 'react';
 import { Image, ListView, StyleSheet, Text, View } from 'react-native';
+import moment from 'moment';
 
 export default class FeedCard extends React.Component {
   constructor(props) {
     super(props);
-    // this.dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
-    // this.renderCard = this.renderCard.bind(this);
   }
 
-  componentWillUpdate() {
-    // Update dataSource
-    // console.log('will update')
-    // this.props.updateDataSource();
+  convertDateTime(datetime) {
+    let timeStamp = new moment.unix(datetime).fromNow();
+    return timeStamp;
   }
 
-
-
-  // should pass in indiv cardData, not feed
-  // renderCard is called once per card in the dataSource
   renderCard(cardData) {
-    // let feedCards = `${feed}Cards`;
-    // let selectedFeed = this.props[feedCards];
-
-    console.log('cardData -- ', cardData)
-
     return (
       <View style={styles.feedCard}>
         <View style={styles.photoContainer}>
@@ -34,7 +23,7 @@ export default class FeedCard extends React.Component {
           />
         </View>
         <View style={styles.statsContainer}>
-          <Text style={styles.timeStamp}>{cardData.datetime}</Text>
+          <Text style={styles.timeStamp}>{this.convertDateTime(cardData.datetime)}</Text>
           <Text style={styles.viewCount}>{cardData.views} views</Text>
         </View>
         <Text style={styles.description}>
