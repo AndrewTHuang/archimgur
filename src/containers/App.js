@@ -1,30 +1,34 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Header from '../components/Header';
 
 export default class Archimgur extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+      <View style={styles.appContainer}>
+        <Header />
+        <View style={styles.feedContainer}>
+          <Text style={styles.welcome}>
+            Welcome to React Native!
+          </Text>
+          <Text style={styles.instructions}>
+            To get started, edit index.ios.js
+          </Text>
+          <Text style={styles.instructions}>
+            Press Cmd+R to reload,{'\n'}
+            Cmd+D or shake for dev menu
+          </Text>
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  appContainer: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 20,
     backgroundColor: '#F5FCFF',
   },
   welcome: {
