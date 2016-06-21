@@ -22,13 +22,15 @@ export default class FeedCard extends React.Component {
             source={{uri: cardData.uri}}
           />
         </View>
-        <View style={styles.statsContainer}>
-          <Text style={styles.timeStamp}>{this.convertDateTime(cardData.datetime)}</Text>
-          <Text style={styles.viewCount}>{cardData.views} views</Text>
+        <View style={styles.infoContainer}>
+          <Text style={styles.infoText}>{this.convertDateTime(cardData.datetime)}</Text>
+          <Text style={styles.infoText}>{cardData.views} views</Text>
         </View>
-        <Text style={styles.description}>
-          {cardData.description || cardData.title}
-        </Text>
+        <View style={styles.descriptionContainer}>
+          <Text style={styles.description}>
+            {cardData.description || cardData.title}
+          </Text>
+        </View>
       </View>
     );
   }
@@ -50,31 +52,33 @@ const styles = StyleSheet.create({
   feedCard: {
     justifyContent: 'center',
     margin: 10,
-    marginBottom: 100,
-    borderWidth: 1,
-    borderColor: 'black',
+    marginBottom: 150,
   },
-  statsContainer: {
+  infoContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingBottom: 20,
-    marginHorizontal: 20,
+    marginHorizontal: 50,
   },
-  photoContainer: {
-    paddingBottom: 10,
-  },
+  photoContainer: {},
   photo: {
-    height: 300,
+    height: 250,
   },
-  timeStamp: {
-    fontSize: 12,
-    color: 'grey',
+  infoText: {
+    fontFamily: 'Helvetica',
+    fontSize: 13,
+    color: '#999',
+    fontWeight: '400',
   },
-  viewCount: {
-    fontSize: 12,
-    color: 'grey',
+  descriptionContainer: {
+    marginHorizontal: 50
   },
   description: {
     textAlign: 'center',
+    fontFamily: 'Helvetica',
+    color: '#2d2d2d',
+    fontSize: 14,
+    fontWeight: '500',
+    lineHeight: 21,
   },
 });
