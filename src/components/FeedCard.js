@@ -1,24 +1,55 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, ListView, StyleSheet, Text, View } from 'react-native';
 
 export default class FeedCard extends React.Component {
+  constructor(props) {
+    super(props);
+    // this.dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
+    // this.renderCard = this.renderCard.bind(this);
+  }
 
-  render() {
+  componentWillUpdate() {
+    // Update dataSource
+    // console.log('will update')
+    // this.props.updateDataSource();
+  }
+
+
+
+  // should pass in indiv cardData, not feed
+  // renderCard is called once per card in the dataSource
+  renderCard(cardData) {
+    // let feedCards = `${feed}Cards`;
+    // let selectedFeed = this.props[feedCards];
+
+    console.log('cardData -- ', cardData)
+
     return (
       <View style={styles.feedCard}>
         <View style={styles.statsContainer}>
-          <Text style={styles.timeStamp}>5 hours ago</Text>
-          <Text style={styles.viewCount}>20 views</Text>
+          <Text style={styles.timeStamp}>{cardData.datetime}</Text>
+          <Text style={styles.viewCount}>{cardData.views}</Text>
         </View>
         <Image
           resizeMode='contain'
           style={styles.photo}
-          source={{uri: 'http://i.imgur.com/yLgcc0F.jpg'}}
+          source={{uri: cardData.uri}}
         >
         </Image>
-        <Text style={styles.description}>St. Angelo's Fort also called Kannur Fort was constructed by the first Portuguese Viceroy, Don Francesco de Almeida in 1505. It is an exotic piece of architecture with its triangular design and magnificent interiors.</Text>
+        <Text style={styles.description}>{cardData.description}</Text>
       </View>
     );
+  }
+
+  render() {
+    const { selectedFeed, dataSource, cabinCards, architectureCards } = this.props;
+
+    return (
+      <ListView
+        dataSource={dataSource}
+        renderRow={(cardData) => this.renderCard(cardData)}
+      />
+    )
   }
 }
 
