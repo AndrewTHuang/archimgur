@@ -10,30 +10,33 @@ export const changeFeed = (newFeed) => {
   }
 }
 
-export const fetchPhotosOnFeedChange = (feed, timesFetched) => {
+export const fetchPhotosOnFeedChange = (feed) => {
   return dispatch => {
     dispatch(changeFeed(feed));
-    dispatch(fetchPhotos(feed, timesFetched));
+    // Reset timesFetched to 0
+    dispatch(fetchPhotos(feed, 0, 'FeedChange'));
   }
 }
 
 export const fetchPhotosOnEndReached = (feed, timesFetched) => {
   return dispatch => {
-    dispatch(fetchPhotos(feed, timesFetched));
+    dispatch(fetchPhotos(feed, timesFetched, 'EndReached'));
   }
 }
 
-export const updateDataSource = (feed, photos) => {
+export const updateDataSource = (feed, photos, feedOrEnd) => {
   return {
     type: UPDATE_DATA_SOURCE,
     feed,
-    photos
+    photos,
+    feedOrEnd
   }
 }
 
-export const requestPhotos = () => {
+export const requestPhotos = (feedOrEnd) => {
   return {
-    type: REQUEST_PHOTOS
+    type: REQUEST_PHOTOS,
+    feedOrEnd
   }
 }
 
@@ -46,10 +49,10 @@ export const receivePhotos = (feed, photos, timesFetched) => {
   }
 }
 
-export const fetchPhotos = (feed, timesFetched) => {
+export const fetchPhotos = (feed, timesFetched, feedOrEnd) => {
   return dispatch => {
     // Dispatch the REQUEST_PHOTOS action
-    dispatch(requestPhotos(feed))
+    dispatch(requestPhotos(feedOrEnd));
 
     const apiURLs = {
       'cabin': 'https://api.imgur.com/3/gallery/r/CabinPorn/',
@@ -87,7 +90,7 @@ export const fetchPhotos = (feed, timesFetched) => {
         }
 
         dispatch(receivePhotos(feed, feedCards, timesFetched));
-        dispatch(updateDataSource(feed, feedCards));
+        dispatch(updateDataSource(feed, feedCards, feedOrEnd));
       } else {
         console.log('Uh oh, something went wrong! Got status code ' + res.status);
       }
