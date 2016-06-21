@@ -20,7 +20,7 @@ export class Archimgur extends React.Component {
     super(props);
 
     // On load, fetch photos from the currently selected feed
-    this.props.fetchPhotos(this.props.photoFeed.selectedFeed, this.props.photoFeed.timesFetched);
+    this.props.fetchPhotos(this.props.photoFeed.selectedFeed, this.props.photoFeed.timesFetched, 'FeedChange');
     this.updateDataSource = this.updateDataSource.bind(this);
     this.fetchPhotosOnFeedChange = this.fetchPhotosOnFeedChange.bind(this);
     this.fetchPhotosOnEndReached = this.fetchPhotosOnEndReached.bind(this);
@@ -31,15 +31,15 @@ export class Archimgur extends React.Component {
   }
 
   fetchPhotosOnFeedChange(newFeed) {
-    this.props.fetchPhotosOnFeedChange(newFeed, this.props.photoFeed.timesFetched);
+    this.props.fetchPhotosOnFeedChange(newFeed, this.props.photoFeed.timesFetched, 'FeedChange');
   }
 
   fetchPhotosOnEndReached() {
-    this.props.fetchPhotosOnEndReached(this.props.photoFeed.selectedFeed, this.props.photoFeed.timesFetched);
+    this.props.fetchPhotosOnEndReached(this.props.photoFeed.selectedFeed, this.props.photoFeed.timesFetched, 'EndReached');
   }
 
   render() {
-    let { selectedFeed, isFetching, dataSource, cabinCards, architectureCards } = this.props.photoFeed;
+    let { selectedFeed, isFetchingOnFeedChange, dataSource, cabinCards, architectureCards } = this.props.photoFeed;
 
     return (
       <View style={styles.appContainer}>
@@ -50,7 +50,7 @@ export class Archimgur extends React.Component {
         />
         <FeedContainer
           selectedFeed={selectedFeed}
-          isFetching={isFetching}
+          isFetchingOnFeedChange={isFetchingOnFeedChange}
           fetchPhotosOnEndReached={this.fetchPhotosOnEndReached}
           dataSource={dataSource}
           cabinCards={cabinCards}
