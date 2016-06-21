@@ -36,7 +36,9 @@ export default class FeedCard extends React.Component {
           source={{uri: cardData.uri}}
         >
         </Image>
-        <Text style={styles.description}>{cardData.description}</Text>
+        <Text style={styles.description}>
+          {cardData.description || cardData.title}
+        </Text>
       </View>
     );
   }
