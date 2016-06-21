@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     paddingTop: 3,
   },
   tabText: {
+    fontFamily: 'Helvetica',
     textAlign: 'center',
     fontSize: 16,
   },
