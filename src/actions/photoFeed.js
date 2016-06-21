@@ -10,10 +10,16 @@ export const changeFeed = (newFeed) => {
   }
 }
 
-export const fetchPhotosOnFeedChange = (feed) => {
+export const fetchPhotosOnFeedChange = (feed, timesFetched) => {
   return dispatch => {
     dispatch(changeFeed(feed));
-    dispatch(fetchPhotos(feed));
+    dispatch(fetchPhotos(feed, timesFetched));
+  }
+}
+
+export const fetchPhotosOnEndReached = (feed, timesFetched) => {
+  return dispatch => {
+    dispatch(fetchPhotos(feed, timesFetched));
   }
 }
 
@@ -31,15 +37,16 @@ export const requestPhotos = () => {
   }
 }
 
-export const receivePhotos = (feed, photos) => {
+export const receivePhotos = (feed, photos, timesFetched) => {
   return {
     type: RECEIVE_PHOTOS,
     feed,
-    photos
+    photos,
+    timesFetched: ++timesFetched
   }
 }
 
-export const fetchPhotos = (feed) => {
+export const fetchPhotos = (feed, timesFetched) => {
   return dispatch => {
     // Dispatch the REQUEST_PHOTOS action
     dispatch(requestPhotos(feed))
@@ -57,16 +64,19 @@ export const fetchPhotos = (feed) => {
     .then(res => {
       return res.json()
     })
-    .then(photos => {
-      if (photos.success) {
+    .then(data => {
+      if (data.success) {
         let feedCards = [];
+        let startIndex = timesFetched * 1;
+        let endIndex = (timesFetched + 1) * 10;
 
-        for (var i = 0; i < 10; i++) {
+        for (let i = startIndex; i < endIndex; i++) {
           let photo = (feed === 'cabin')
-            ? photos.data[i]
-            : photos.data.items[i]
+            ? data.data[i]
+            : data.data.items[i]
 
           let cardData = {
+            id: photo.id,
             uri: photo.link,
             description: photo.description,
             datetime: photo.datetime,
@@ -76,7 +86,7 @@ export const fetchPhotos = (feed) => {
           feedCards.push(cardData);
         }
 
-        dispatch(receivePhotos(feed, feedCards));
+        dispatch(receivePhotos(feed, feedCards, timesFetched));
         dispatch(updateDataSource(feed, feedCards));
       } else {
         console.log('Uh oh, something went wrong! Got status code ' + res.status);
