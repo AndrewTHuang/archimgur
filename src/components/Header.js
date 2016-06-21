@@ -21,5 +21,6 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 20,
+    fontFamily: 'Helvetica',
   },
 });
