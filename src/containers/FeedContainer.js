@@ -4,11 +4,11 @@ import FeedCard from '../components/FeedCard';
 
 export default class FeedContainer extends React.Component {
   render() {
-    let { isFetching } = this.props;
+    let { isFetchingOnFeedChange } = this.props;
 
     return (
       <View style={styles.feedContainer}>
-        { isFetching
+        { isFetchingOnFeedChange
           ? <ActivityIndicatorIOS size={'large'} />
           : <FeedCard
               selectedFeed={this.props.selectedFeed}

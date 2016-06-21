@@ -5,7 +5,8 @@ let dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
 
 const initialState = {
   selectedFeed: 'cabin',
-  isFetching: true,
+  isFetchingOnFeedChange: true,
+  isFetchingOnEndReached: false,
   timesFetched: 0,
   dataSource: dataSource,
   cabinCards: [],
@@ -22,9 +23,10 @@ export default photoFeed = (state = initialState, action) => {
       }
 
     case REQUEST_PHOTOS:
+      let isFetching = `isFetchingOn${action.feedOrEnd}`;
       return {
         ...state,
-        isFetching: true
+        [isFetching]: true
       };
 
     case RECEIVE_PHOTOS:
@@ -36,6 +38,8 @@ export default photoFeed = (state = initialState, action) => {
       }
 
     case UPDATE_DATA_SOURCE:
+      let fetching = `isFetchingOn${action.feedOrEnd}`;
+
       let newPhotos = [];
       newPhotos = [state.dataSource].slice();
       let newDataSource = newPhotos[0].cloneWithRows(action.photos);
@@ -43,7 +47,7 @@ export default photoFeed = (state = initialState, action) => {
       return {
         ...state,
         dataSource: newDataSource,
-        isFetching: false
+        [fetching]: false
       }
 
     default:
