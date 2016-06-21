@@ -1,16 +1,20 @@
-import { CHANGE_FEED, REQUEST_PHOTOS, RECEIVE_PHOTOS, UPDATE_DATA_SOURCE } from '../actions/photoFeed';
-import { ListView } from 'react-native';
+import {
+  CHANGE_FEED,
+  REQUEST_PHOTOS,
+  RECEIVE_PHOTOS,
+  UPDATE_DATA_SOURCE } from '../actions/photoFeed';
+import { ListView }    from 'react-native';
 
 let dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
 
 const initialState = {
-  selectedFeed: 'cabin',
-  isFetchingOnFeedChange: true,
-  isFetchingOnEndReached: false,
-  timesFetched: 0,
-  dataSource: dataSource,
-  cabinCards: [],
   architectureCards: []
+  cabinCards: [],
+  dataSource: dataSource,
+  isFetchingOnEndReached: false,
+  isFetchingOnFeedChange: true,
+  selectedFeed: 'cabin',
+  timesFetched: 0,
 }
 
 export default photoFeed = (state = initialState, action) => {
@@ -41,8 +45,8 @@ export default photoFeed = (state = initialState, action) => {
       let fetching = `isFetchingOn${action.feedOrEnd}`;
 
       let newPhotos = [];
-      newPhotos = [state.dataSource].slice();
-      let newDataSource = newPhotos[0].cloneWithRows(action.photos);
+      newPhotos = [state.dataSource].slice(); // make a copy of the existing dataSource
+      let newDataSource = newPhotos[0].cloneWithRows(action.photos);  // add new photos
 
       return {
         ...state,

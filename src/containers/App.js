@@ -1,11 +1,14 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as photoFeedActions from '../actions/photoFeed';
-import Header from '../components/Header';
-import TabsContainer from './TabsContainer';
-import FeedContainer from './FeedContainer';
+import {
+  StyleSheet,
+  Text,
+  View }                       from 'react-native';
+import React                   from 'react';
+import { bindActionCreators }  from 'redux';
+import { connect }             from 'react-redux';
+import * as photoFeedActions   from '../actions/photoFeed';
+import Header                  from '../components/Header';
+import TabsContainer           from './TabsContainer';
+import FeedContainer           from './FeedContainer';
 
 const mapStateToProps = (state) => ({
   photoFeed: state.photoFeed
@@ -21,13 +24,8 @@ export class Archimgur extends React.Component {
 
     // On load, fetch photos from the currently selected feed
     this.props.fetchPhotos(this.props.photoFeed.selectedFeed, this.props.photoFeed.timesFetched, 'FeedChange');
-    this.updateDataSource = this.updateDataSource.bind(this);
     this.fetchPhotosOnFeedChange = this.fetchPhotosOnFeedChange.bind(this);
     this.fetchPhotosOnEndReached = this.fetchPhotosOnEndReached.bind(this);
-  }
-
-  updateDataSource() {
-    this.props.updateDataSource();
   }
 
   fetchPhotosOnFeedChange(newFeed) {
@@ -49,13 +47,13 @@ export class Archimgur extends React.Component {
           selectedFeed={selectedFeed}
         />
         <FeedContainer
-          selectedFeed={selectedFeed}
-          isFetchingOnFeedChange={isFetchingOnFeedChange}
-          fetchPhotosOnEndReached={this.fetchPhotosOnEndReached}
-          dataSource={dataSource}
-          cabinCards={cabinCards}
           architectureCards={architectureCards}
-          updateDataSource={this.updateDataSource}
+          cabinCards={cabinCards}
+          dataSource={dataSource}
+          fetchPhotosOnEndReached={this.fetchPhotosOnEndReached}
+          isFetchingOnFeedChange={isFetchingOnFeedChange}
+          selectedFeed={selectedFeed}
+          updateDataSource={this.props.updateDataSource}
         />
       </View>
     );

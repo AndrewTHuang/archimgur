@@ -1,7 +1,7 @@
-export const CHANGE_FEED = 'CHANGE_FEED';
+export const CHANGE_FEED        = 'CHANGE_FEED';
 export const UPDATE_DATA_SOURCE = 'UPDATE_DATA_SOURCE';
-export const REQUEST_PHOTOS = 'REQUEST_PHOTOS';
-export const RECEIVE_PHOTOS = 'RECEIVE_PHOTOS';
+export const REQUEST_PHOTOS     = 'REQUEST_PHOTOS';
+export const RECEIVE_PHOTOS     = 'RECEIVE_PHOTOS';
 
 export const changeFeed = (newFeed) => {
   return {
