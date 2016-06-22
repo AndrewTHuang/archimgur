@@ -1,8 +1,8 @@
 import {
   StyleSheet,
   Text,
-  TouchableHighlight } from 'react-native';
-import React           from 'react';
+  TouchableOpacity } from 'react-native';
+import React         from 'react';
 
 export default class Tab extends React.Component {
   constructor(props) {
@@ -18,30 +18,23 @@ export default class Tab extends React.Component {
 
   render() {
     return (
-      <TouchableHighlight
-        style={[styles.tab, (this.props.selectedFeed === this.props.feedName) && styles.selectedFeed]}
+      <TouchableOpacity
+        style={[styles.tab, (this.props.selectedFeed === this.props.feedName) && styles.selectedTab]}
         onPress={() => this.onPress(this.props.feedName)}
-        underlayColor={'lightgrey'}
       >
-        <Text style={styles.tabText}>
+        <Text style={[styles.tabText, (this.props.selectedFeed === this.props.feedName) && styles.selectedText]}>
           {this.props.title}
         </Text>
-      </TouchableHighlight>
+      </TouchableOpacity>
     );
   }
 }
 
 const styles = StyleSheet.create({
   tab: {
-    flex: 1,
-    borderTopWidth: 0.5,
-    borderBottomWidth: 0.5,
-    borderColor: 'grey',
-    alignSelf: 'stretch',
     justifyContent: 'center',
   },
-  selectedFeed: {
-    backgroundColor: '#eee',
+  selectedTab: {
     borderBottomColor: 'black',
     borderBottomWidth: 3,
     paddingTop: 3,
@@ -49,6 +42,10 @@ const styles = StyleSheet.create({
   tabText: {
     fontFamily: 'Helvetica',
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 14,
+    letterSpacing: 1,
   },
+  selectedText: {
+    fontWeight: '500',
+  }
 });

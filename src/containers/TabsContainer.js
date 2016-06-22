@@ -28,8 +28,7 @@ export default class TabsContainer extends React.Component {
 const styles = StyleSheet.create({
   tabsContainer: {
     flexDirection: 'row',
-    height: 64, // combined height of status bar + header
-    alignSelf: 'stretch',
+    height: 36,
     justifyContent: 'space-around',
     marginBottom: 20,
   },

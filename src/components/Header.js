@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   headerText: {
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: 'Helvetica',
+    letterSpacing: 2,
   },
 });
