@@ -64,16 +64,17 @@ const styles = StyleSheet.create({
   feedCard: {
     justifyContent: 'center',
     margin: 10,
-    marginBottom: 150,
+    marginBottom: 125,
   },
   infoContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingBottom: 20,
+    paddingBottom: 10,
     marginHorizontal: 50,
   },
   photo: {
     height: 250,
+    marginBottom: 10,
   },
   infoText: {
     fontFamily: 'Helvetica',
